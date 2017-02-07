@@ -1,11 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addItem } from '../reducers';
 
-import Product from './Product';
-
-const Shop = ({ products }) => (
+const Shop = ({ products, onClick }) => (
   <div>
-    {products.map(p => <Product src={p.src} key={p.id} />)}
+    {products.map(product => (
+      <div className="product" key={product.id}>
+        <img src={product.src} className="product-image" alt="product" />
+        <button onClick={() => onClick(product.id)}>Add to basket</button>
+      </div>
+    ))}
   </div>
 );
 
@@ -13,4 +18,7 @@ const mapStateToProps = (state) => ({
   products: state.products,
 });
 
-export default connect(mapStateToProps)(Shop);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ onClick: addItem }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);
