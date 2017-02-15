@@ -12,6 +12,9 @@ import yellowBrickSrc from './assets/yellow-brick.jpg';
 import greyBrickSrc from './assets/grey-brick.jpg';
 
 const initialState = {
+  user: {
+    name: 'Kadi',
+  },
   products: [
     { id: 'green-brick', src: greenBrickSrc },
     { id: 'yellow-brick', src: yellowBrickSrc },
